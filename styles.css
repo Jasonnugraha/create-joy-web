@@ -185,12 +185,6 @@ a {
   margin-top: 64px;
 }
 
-.scroll {
-  font-size: 11px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-}
-
 .pager {
   display: flex;
   gap: 10px;
@@ -807,9 +801,6 @@ footer {
   }
   .about-art {
     min-height: 420px;
-  }
-  .hero-meta {
-    margin-top: 45px;
   }
   .mini-logo {
     width: 110px;
