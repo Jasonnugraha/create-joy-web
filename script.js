@@ -5,17 +5,6 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 
 const nav = document.getElementById("nav");
 
-// Optional GA4 integration: CTA clicks are sent only after the Google tag is configured.
-document.addEventListener("click", (event) => {
-  const target = event.target instanceof Element
-    ? event.target.closest("[data-analytics-event]")
-    : null;
-  const eventName = target?.dataset.analyticsEvent;
-  if (eventName && typeof window.gtag === "function") {
-    window.gtag("event", eventName, { page_location: window.location.href });
-  }
-});
-
 const updateNavigation = () => {
   nav?.classList.toggle("scrolled", window.scrollY > 40);
 };
