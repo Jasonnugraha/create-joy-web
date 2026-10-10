@@ -30,3 +30,22 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach((element) => {
   revealObserver.observe(element);
 });
+
+document.querySelectorAll(".create-card-gallery").forEach((gallery) => {
+  const images = [...gallery.querySelectorAll("img")];
+
+  if (images.length < 2) {
+    images[0]?.classList.add("is-active");
+    return;
+  }
+
+  let activeImage = 0;
+  const showImage = (nextIndex) => {
+    images[activeImage].classList.remove("is-active");
+    activeImage = nextIndex % images.length;
+    images[activeImage].classList.add("is-active");
+  };
+
+  showImage(0);
+  window.setInterval(() => showImage(activeImage + 1), 6500);
+});
