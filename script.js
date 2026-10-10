@@ -1,3 +1,5 @@
+const SLIDE_INTERVAL_MS = 3000;
+
 const nav = document.getElementById("nav");
 
 window.addEventListener("scroll", () => {
@@ -16,7 +18,7 @@ if (slides.length > 1) {
     currentSlide = (currentSlide + 1) % slides.length;
     slides[currentSlide].classList.add("active");
     dots[currentSlide]?.classList.add("active");
-  }, 6500);
+  }, SLIDE_INTERVAL_MS);
 }
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -47,5 +49,5 @@ document.querySelectorAll(".create-card-gallery").forEach((gallery) => {
   };
 
   showImage(0);
-  window.setInterval(() => showImage(activeImage + 1), 6500);
+  window.setInterval(() => showImage(activeImage + 1), SLIDE_INTERVAL_MS);
 });
