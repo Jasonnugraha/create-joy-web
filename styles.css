@@ -121,6 +121,7 @@ a {
 .hero-slide {
   position: absolute;
   inset: 0;
+  background-image: var(--hero-desktop-image);
   background-size: cover;
   background-position: center;
   opacity: 0;
@@ -138,6 +139,12 @@ a {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg,rgba(5,14,32,.74) 0%,rgba(5,14,32,.32) 48%,rgba(5,14,32,.12) 100%),linear-gradient(0deg,rgba(5,14,32,.72),transparent 55%);
+}
+
+@media(max-width:700px) {
+  .hero-slide {
+    background-image: var(--hero-mobile-image);
+  }
 }
 
 .hero-content {
@@ -427,74 +434,6 @@ section {
   color: rgba(255,255,255,.85);
 }
 
-.community {
-  background: var(--navy);
-  color: white;
-}
-
-.community .section-kicker {
-  color: rgba(255,255,255,.6);
-}
-
-.community .lead {
-  color: rgba(255,255,255,.68);
-}
-
-.community-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 40px;
-  margin-bottom: 60px;
-}
-
-.community-item {
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 40px;
-  align-items: center;
-  padding: 50px 0;
-  border-top: 1px solid rgba(255,255,255,.14);
-}
-
-.community-item.reverse {
-  grid-template-columns: .95fr 1.05fr;
-}
-
-.community-item.reverse .comm-img {
-  order: 2;
-}
-
-.comm-img {
-  width: 100%;
-  height: 520px;
-  object-fit: cover;
-  border-radius: 26px;
-}
-
-.community-copy .tag {
-  font-size: 11px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  font-weight: 800;
-}
-
-.community-copy h3 {
-  font-family: var(--serif);
-  font-size: 64px;
-  font-weight: 400;
-  line-height: .95;
-  margin: 15px 0;
-}
-
-.community-copy p {
-  font-size: 17px;
-  line-height: 1.7;
-  color: rgba(255,255,255,.7);
-  max-width: 480px;
-}
-
 .experience {
   background: var(--cream);
 }
@@ -764,19 +703,6 @@ footer {
   .values {
     grid-template-columns: 1fr 1fr;
   }
-  .community-item,.community-item.reverse {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-  .community-item.reverse .comm-img {
-    order: 0;
-  }
-  .comm-img {
-    height: 420px;
-  }
-  .community-copy h3 {
-    font-size: 52px;
-  }
   .experience-story {
     grid-template-columns: 1fr;
   }
@@ -819,8 +745,5 @@ footer {
   }
   .hero-copy {
     font-size: 15px;
-  }
-  .community-item {
-    padding: 38px 0;
   }
 }
