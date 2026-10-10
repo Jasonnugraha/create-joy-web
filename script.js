@@ -23,20 +23,30 @@ const setActiveItem = (items, activeIndex, activeClass = "active") => {
   });
 };
 
+const loadCarouselImage = (item) => {
+  if (!(item instanceof HTMLImageElement) || !item.dataset.src) return;
+  item.src = item.dataset.src;
+  delete item.dataset.src;
+};
+
 const startCarousel = (items, initialIndex = 0, activeClass = "is-active", onChange = () => {}) => {
   if (items.length === 0) return;
 
   const markedIndex = items.findIndex((item) => item.classList.contains(activeClass));
   let activeIndex = markedIndex >= 0 ? markedIndex : initialIndex % items.length;
+  loadCarouselImage(items[activeIndex]);
   setActiveItem(items, activeIndex, activeClass);
 
   if (items.length < 2 || prefersReducedMotion) return;
+  loadCarouselImage(items[(activeIndex + 1) % items.length]);
 
   let intervalId;
   const advance = () => {
     activeIndex = (activeIndex + 1) % items.length;
+    loadCarouselImage(items[activeIndex]);
     setActiveItem(items, activeIndex, activeClass);
     onChange(activeIndex);
+    loadCarouselImage(items[(activeIndex + 1) % items.length]);
   };
   const start = () => {
     if (document.hidden || intervalId) return;

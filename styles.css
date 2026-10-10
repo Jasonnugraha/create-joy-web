@@ -76,6 +76,7 @@ summary:focus-visible {
 
 .nav.scrolled {
   background: rgba(255,253,248,.92);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 rgba(13,32,71,.08);
 }
@@ -103,6 +104,8 @@ summary:focus-visible {
 .mark {
   width: 24px;
   height: 32px;
+  aspect-ratio: 3 / 4;
+  flex: 0 0 auto;
   display: block;
   object-fit: contain;
   filter: invert(1);
@@ -131,6 +134,7 @@ summary:focus-visible {
 }
 
 .hero {
+  min-height: 100vh;
   min-height: 100svh;
   position: relative;
   color: white;
@@ -201,6 +205,7 @@ summary:focus-visible {
   font-style: normal;
   background: linear-gradient(90deg,var(--red),var(--yellow),var(--purple),var(--cyan));
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
 }
@@ -285,6 +290,7 @@ section {
 .accent-word {
   background: linear-gradient(90deg,var(--red),var(--purple),var(--cyan));
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
@@ -326,11 +332,19 @@ section {
   top: -28px;
   width: 150px;
   height: 150px;
-  padding: 28px;
   border-radius: 50%;
-  object-fit: contain;
+  display: grid;
+  place-items: center;
   background: white;
   box-shadow: 0 20px 45px rgba(13,32,71,.18);
+}
+
+.mini-logo img {
+  display: block;
+  width: 75px;
+  height: 100px;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
 }
 
 .create {
@@ -594,8 +608,10 @@ section {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  width: 300px;
-  height: 400px;
+  width: min(300px, 70%);
+  max-height: 400px;
+  height: auto;
+  aspect-ratio: 3 / 4;
   object-fit: contain;
   filter: invert(1);
 }
@@ -626,7 +642,9 @@ footer {
 
 .footer-brand img {
   height: 27px;
-  width: auto;
+  width: 20.25px;
+  aspect-ratio: 3 / 4;
+  flex: 0 0 auto;
   filter: invert(1);
 }
 
@@ -716,7 +734,10 @@ footer {
   .mini-logo {
     width: 110px;
     height: 110px;
-    font-size: 34px;
+  }
+  .mini-logo img {
+    width: 54px;
+    height: 72px;
   }
 }
 
