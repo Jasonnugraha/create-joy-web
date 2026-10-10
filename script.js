@@ -1,53 +1,94 @@
+document.documentElement.classList.add("js");
+
 const SLIDE_INTERVAL_MS = 3000;
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const nav = document.getElementById("nav");
 
-window.addEventListener("scroll", () => {
-  nav.classList.toggle("scrolled", window.scrollY > 40);
-});
+const updateNavigation = () => {
+  nav?.classList.toggle("scrolled", window.scrollY > 40);
+};
 
-const slides = [...document.querySelectorAll(".hero-slide")];
-const dots = [...document.querySelectorAll(".dot")];
-let currentSlide = 0;
+window.addEventListener("scroll", updateNavigation, { passive: true });
+updateNavigation();
 
-if (slides.length > 1) {
-  setInterval(() => {
-    slides[currentSlide].classList.remove("active");
-    dots[currentSlide]?.classList.remove("active");
+const setActiveItem = (items, activeIndex, activeClass = "active") => {
+  items.forEach((item, index) => {
+    const isActive = index === activeIndex;
+    item.classList.toggle(activeClass, isActive);
 
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add("active");
-    dots[currentSlide]?.classList.add("active");
-  }, SLIDE_INTERVAL_MS);
-}
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
+    if (item instanceof HTMLImageElement) {
+      item.setAttribute("aria-hidden", String(!isActive));
     }
   });
-}, { threshold: 0.12 });
+};
 
-document.querySelectorAll(".reveal").forEach((element) => {
-  revealObserver.observe(element);
-});
+const startCarousel = (items, initialIndex = 0, activeClass = "is-active", onChange = () => {}) => {
+  if (items.length === 0) return;
 
-document.querySelectorAll(".create-card-gallery").forEach((gallery) => {
-  const images = [...gallery.querySelectorAll("img")];
+  const markedIndex = items.findIndex((item) => item.classList.contains(activeClass));
+  let activeIndex = markedIndex >= 0 ? markedIndex : initialIndex % items.length;
+  setActiveItem(items, activeIndex, activeClass);
 
-  if (images.length < 2) {
-    images[0]?.classList.add("is-active");
-    return;
-  }
+  if (items.length < 2 || prefersReducedMotion) return;
 
-  let activeImage = 0;
-  const showImage = (nextIndex) => {
-    images[activeImage].classList.remove("is-active");
-    activeImage = nextIndex % images.length;
-    images[activeImage].classList.add("is-active");
+  let intervalId;
+  const advance = () => {
+    activeIndex = (activeIndex + 1) % items.length;
+    setActiveItem(items, activeIndex, activeClass);
+    onChange(activeIndex);
+  };
+  const start = () => {
+    if (document.hidden || intervalId) return;
+    intervalId = window.setInterval(advance, SLIDE_INTERVAL_MS);
+  };
+  const stop = () => {
+    window.clearInterval(intervalId);
+    intervalId = undefined;
   };
 
-  showImage(0);
-  window.setInterval(() => showImage(activeImage + 1), SLIDE_INTERVAL_MS);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop();
+    else start();
+  });
+  start();
+};
+
+const heroSlides = [...document.querySelectorAll(".hero-slide")];
+const heroDots = [...document.querySelectorAll(".pager .dot")];
+startCarousel(heroSlides, 0, "active", (activeIndex) => {
+  setActiveItem(heroDots, activeIndex, "active");
 });
+setActiveItem(heroDots, heroSlides.findIndex((slide) => slide.classList.contains("active")), "active");
+
+const revealElements = [...document.querySelectorAll(".reveal")];
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+
+  revealElements.forEach((element) => revealObserver.observe(element));
+} else {
+  revealElements.forEach((element) => element.classList.add("visible"));
+}
+
+document.querySelectorAll(".create-card-gallery").forEach((gallery) => {
+  startCarousel([...gallery.querySelectorAll("img")]);
+});
+
+document.querySelectorAll(".experience-carousel").forEach((carousel) => {
+  startCarousel([...carousel.querySelectorAll("img")]);
+});
+
+document.querySelectorAll(".mobile-nav-links a").forEach((link) => {
+  link.addEventListener("click", () => {
+    link.closest("details")?.removeAttribute("open");
+  });
+});
+
+const currentYear = document.getElementById("current-year");
+if (currentYear) currentYear.textContent = new Date().getFullYear();
