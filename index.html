@@ -33,7 +33,13 @@
         "url": "https://createjoy.agency/",
         "logo": "https://createjoy.agency/assets/createjoy-logo.svg",
         "description": "CreateJoy brings together people development, practical business opportunities, project experiences, and community events in Indonesia.",
-        "foundingDate": "2023"
+        "foundingDate": "2023",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+628819121212",
+          "contactType": "business inquiries",
+          "availableLanguage": ["English", "Indonesian"]
+        }
       }
     </script>
   </head>
@@ -51,6 +57,8 @@
           <a href="#create">Our Ecosystem</a>
           <a href="#opportunities">Opportunities</a>
           <a href="#about">About CreateJoy</a>
+          <a href="#contact">Contact</a>
+          <a class="nav-cta" href="#opportunities" data-analytics-event="view_opportunities">Explore roles</a>
         </div>
         <details class="mobile-nav">
           <summary aria-label="Open navigation menu">Menu</summary>
@@ -59,6 +67,8 @@
             <a href="#create">Our Ecosystem</a>
             <a href="#opportunities">Opportunities</a>
             <a href="#about">About CreateJoy</a>
+            <a href="#contact">Contact</a>
+            <a href="#opportunities" data-analytics-event="view_opportunities">Explore roles</a>
           </div>
         </details>
       </div>
@@ -74,6 +84,10 @@
         <div class="eyebrow">Business Opportunities · People Development · Community</div>
         <h1>together,<br>we CREATE <em>JOY.</em></h1>
         <p class="hero-copy">An Indonesia-based business and community ecosystem where people develop practical skills, explore opportunities, and create meaningful experiences together.</p>
+        <div class="hero-actions">
+          <a class="button button-light" href="#opportunities" data-analytics-event="view_opportunities">Explore opportunities <span aria-hidden="true">↗</span></a>
+          <a class="button button-outline" href="#create" data-analytics-event="view_ecosystem">See what we do</a>
+        </div>
         <div class="hero-meta">
           <div class="pager">
             <span class="dot active"></span>
@@ -99,8 +113,14 @@
                 <img src="assets/createjoy-logo.svg" alt="CreateJoy logo">
               </div>
               <div class="who-gallery">
-                <img class="who-photo" src="assets/who-group-1.webp" alt="CreateJoy community group" loading="lazy" decoding="async">
-                <img class="who-photo" src="assets/who-group-2.webp" alt="CreateJoy team at a community event" loading="lazy" decoding="async">
+                <figure class="who-photo-card">
+                  <img class="who-photo" src="assets/who-group-1.webp" alt="CreateJoy members together at a group event" loading="lazy" decoding="async">
+                  <figcaption>CreateJoy, together.</figcaption>
+                </figure>
+                <figure class="who-photo-card">
+                  <img class="who-photo" src="assets/who-group-2.webp" alt="CreateJoy members sharing an experience" loading="lazy" decoding="async">
+                  <figcaption>People and experiences.</figcaption>
+                </figure>
               </div>
             </div>
           </div>
@@ -124,7 +144,7 @@
               </div>
               <div class="create-card-content">
                 <h3>People Development</h3>
-                <p>Build communication, leadership, networking, sales, and business skills through training, mentoring, and hands-on experience.</p>
+                <p>Join learning sessions, peer mentoring, and hands-on activities to practice communication, leadership, networking, and business skills.</p>
               </div>
             </article>
             <article class="create-card reveal">
@@ -133,7 +153,7 @@
               </div>
               <div class="create-card-content">
                 <h3>Business Development</h3>
-                <p>Develop relationships, explore opportunities, and contribute to sustainable business growth.</p>
+                <p>Help build partnerships, follow up on opportunities, and support client relationships while learning how business development works in practice.</p>
               </div>
             </article>
             <article class="create-card reveal">
@@ -152,7 +172,7 @@
               </div>
               <div class="create-card-content">
                 <h3>Projects & Experiences</h3>
-                <p>Plan and deliver projects, events, and initiatives with clear coordination and thoughtful execution.</p>
+                <p>Coordinate timelines, people, and details for projects and events, from planning through delivery and follow-up.</p>
               </div>
             </article>
             <article class="create-card reveal">
@@ -177,7 +197,7 @@
               </div>
               <div class="create-card-content">
                 <h3>Community & Lifestyle</h3>
-                <p>Bring people together through shared interests, active communities, and meaningful experiences.</p>
+                <p>Help host gatherings and shared-interest activities that bring people together, from community meetups to lifestyle experiences.</p>
               </div>
             </article>
           </div>
@@ -196,25 +216,25 @@
               <div class="trust-row">
                 <div>
                   <h4>HR & People Development</h4>
-                  <p>Support recruitment, team development, communication, and people engagement while growing your leadership and interpersonal skills.</p>
+                  <p>Help welcome and onboard members, coordinate team communication, and support learning activities. A good fit for people who enjoy organizing, listening, and helping others develop.</p>
                 </div>
               </div>
               <div class="trust-row">
                 <div>
                   <h4>Project Management</h4>
-                  <p>Plan, coordinate, and execute projects, events, and initiatives while building organization and problem-solving skills.</p>
+                  <p>Turn plans into timelines, coordinate owners and logistics, track progress, and close the loop after delivery. A good fit for organized communicators who enjoy solving practical problems.</p>
                 </div>
               </div>
               <div class="trust-row">
                 <div>
                   <h4>Business Development</h4>
-                  <p>Develop relationships, explore opportunities, and contribute to business growth while building your professional network.</p>
+                  <p>Research potential partners, help manage follow-ups, and support relationship-building. A good fit for curious, proactive people who enjoy connecting with others.</p>
                 </div>
               </div>
               <div class="trust-row">
                 <div>
                   <h4>Sales & Client Relationships</h4>
-                  <p>Build communication and relationship-management skills through direct interaction with clients and partners.</p>
+                  <p>Understand client needs, prepare clear follow-ups, and maintain reliable partner communication. Activities and compensation depend on the specific role or opportunity.</p>
                 </div>
               </div>
             </div>
@@ -335,6 +355,19 @@
           </div>
         </div>
       </section>
+      <section class="contact" id="contact">
+        <div class="container contact-inner reveal">
+          <div>
+            <div class="section-kicker">Take the next step</div>
+            <h2 class="display">Find your place in the <span class="accent-word">ecosystem.</span></h2>
+            <p class="lead">Explore the roles and areas above, then connect with the CreateJoy team to learn which opportunity fits your interests.</p>
+          </div>
+          <div class="contact-actions">
+            <a class="button button-dark" href="https://wa.me/628819121212?text=Hi%20CreateJoy%2C%20I%27d%20like%20to%20learn%20about%20your%20opportunities." target="_blank" rel="noopener noreferrer" data-analytics-event="contact_whatsapp">Chat with us on WhatsApp <span aria-hidden="true">↗</span></a>
+            <a class="contact-secondary" href="#opportunities" data-analytics-event="view_opportunities">Explore roles first</a>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- EDIT: footer brand name and closing message. -->
     <footer>
@@ -344,6 +377,7 @@
           <span>CREATEJOY®</span>
         </div>
         <div>Together, we create joy.</div>
+        <a href="#contact" data-analytics-event="contact_section">Contact CreateJoy</a>
         <div>© <span id="current-year">2026</span> CreateJoy. All Rights Reserved.</div>
       </div>
     </footer>
