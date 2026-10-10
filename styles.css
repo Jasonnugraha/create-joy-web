@@ -412,12 +412,6 @@ section {
   bottom: 30px;
 }
 
-.num {
-  font-size: 11px;
-  letter-spacing: .15em;
-  opacity: .75;
-}
-
 .create-card h3 {
   font-family: var(--serif);
   font-size: 44px;
@@ -616,17 +610,8 @@ section {
 }
 
 .trust-row {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  gap: 20px;
   padding: 28px 0;
   border-bottom: 1px solid rgba(13,32,71,.16);
-}
-
-.trust-row .idx {
-  font-family: var(--serif);
-  font-size: 26px;
-  color: var(--purple);
 }
 
 .trust-row h4 {
