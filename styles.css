@@ -270,11 +270,16 @@ section {
   opacity: .8;
 }
 
+.who-gallery {
+  display: grid;
+  gap: 18px;
+}
+
 .who-photo {
   position: relative;
   z-index: 2;
   width: 100%;
-  aspect-ratio: 1.25;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 30px;
   box-shadow: 0 30px 70px rgba(13,32,71,.18);
@@ -292,20 +297,6 @@ section {
   object-fit: contain;
   background: white;
   box-shadow: 0 20px 45px rgba(13,32,71,.18);
-}
-
-.team-strip {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 14px;
-  margin-top: 18px;
-}
-
-.team-strip img {
-  width: 100%;
-  aspect-ratio: 1/1.1;
-  object-fit: cover;
-  border-radius: 20px;
 }
 
 .values {
@@ -795,12 +786,6 @@ footer {
 }
 
 @media(max-width:560px) {
-  .team-strip {
-    gap: 8px;
-  }
-  .team-strip img {
-    border-radius: 12px;
-  }
   .values {
     grid-template-columns: 1fr;
   }
