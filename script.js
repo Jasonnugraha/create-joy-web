@@ -29,24 +29,38 @@ const loadCarouselImage = (item) => {
   delete item.dataset.src;
 };
 
-const startCarousel = (items, initialIndex = 0, activeClass = "is-active", onChange = () => {}) => {
+const loadHeroSlide = (slide) => {
+  if (!slide.dataset.desktopImage || !slide.dataset.mobileImage) return;
+  slide.style.setProperty("--hero-desktop-image", `url("${slide.dataset.desktopImage}")`);
+  slide.style.setProperty("--hero-mobile-image", `url("${slide.dataset.mobileImage}")`);
+  delete slide.dataset.desktopImage;
+  delete slide.dataset.mobileImage;
+};
+
+const startCarousel = (
+  items,
+  initialIndex = 0,
+  activeClass = "is-active",
+  onChange = () => {},
+  prepareItem = loadCarouselImage,
+) => {
   if (items.length === 0) return;
 
   const markedIndex = items.findIndex((item) => item.classList.contains(activeClass));
   let activeIndex = markedIndex >= 0 ? markedIndex : initialIndex % items.length;
-  loadCarouselImage(items[activeIndex]);
+  prepareItem(items[activeIndex]);
   setActiveItem(items, activeIndex, activeClass);
 
   if (items.length < 2 || prefersReducedMotion) return;
-  loadCarouselImage(items[(activeIndex + 1) % items.length]);
+  prepareItem(items[(activeIndex + 1) % items.length]);
 
   let intervalId;
   const advance = () => {
     activeIndex = (activeIndex + 1) % items.length;
-    loadCarouselImage(items[activeIndex]);
+    prepareItem(items[activeIndex]);
     setActiveItem(items, activeIndex, activeClass);
     onChange(activeIndex);
-    loadCarouselImage(items[(activeIndex + 1) % items.length]);
+    prepareItem(items[(activeIndex + 1) % items.length]);
   };
   const start = () => {
     if (document.hidden || intervalId) return;
@@ -68,7 +82,7 @@ const heroSlides = [...document.querySelectorAll(".hero-slide")];
 const heroDots = [...document.querySelectorAll(".pager .dot")];
 startCarousel(heroSlides, 0, "active", (activeIndex) => {
   setActiveItem(heroDots, activeIndex, "active");
-});
+}, loadHeroSlide);
 setActiveItem(heroDots, heroSlides.findIndex((slide) => slide.classList.contains("active")), "active");
 
 const revealElements = [...document.querySelectorAll(".reveal")];
