@@ -499,6 +499,10 @@ section {
   background: var(--paper);
 }
 
+.opportunities {
+  background: var(--cream);
+}
+
 .trust-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
